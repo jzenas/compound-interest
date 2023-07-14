@@ -13,12 +13,27 @@ def home():
 @app.route("/process", methods=['GET', 'POST'])
 def calc():
     print("hi")
-    income = request.form.get("income")
-    raises = request.form.get("raise")
-    gains = request.form.get("gains")
-    retire_age = request.form.get("retire")
-    invest_percent = request.form.get("invest")
-    current_ammount = request.form.get("current")
-    current_age = request.form.get("age")
+    print(request.form)
+    print("raise:" + request.form["raise"])
+    income = float(request.form["income"])
+    print("1")
+    raises = float(request.form["raise"])/100
+    print("1")
+    gains = float(request.form["gains"]) / 100
+    print("1")
+    retire_age = int(request.form["retire"])
+    print("1")
+    invest_percent = float(request.form["invest"]) / 100
+    print("1")
+    current_ammount = int(request.form["current"])
+    print("1")
+    current_age = float(request.form["age"])
 
-    return Flask.redirect("/")
+    time_diff = int(retire_age - current_age)
+
+    value = current_ammount
+    for i in range(0, time_diff):
+        value = value * (1 + gains)
+        value = value + (income * invest_percent)
+        income = income*(1 + raises)
+    return render_template("home.html", context={"earnings": value})

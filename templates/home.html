@@ -71,11 +71,11 @@
     <main>
         <h2>Enter your information here</h2>
         <p>The calculator will tell you your projected retirement savings</p>
-        <form action="/process/">
+        <form action="/process" method="post" enctype="multipart/form-data">
             <label for="income">Annual Income:</label><br>
             <input type="number" id="income" name="income" value="100000"><br>
             <label for="invest">Percentage of Income Invested:</label><br>
-            <input type="number" id="income" name="income" value="100000"><br>
+            <input type="number" id="invest" name="invest" value="20"><br>
             <label for="current">Current Amount Invested:</label><br>
             <input type="current" id="current" name="current" value="1000"><br><br>
             <label for="raise">Projected Annual Raise %:</label><br>
@@ -88,6 +88,7 @@
             <input type="number" id="retire" name="retire" value="60"><br><br>
             <input type="submit" value="Submit">
         </form>
+        <h4>Earnings: {{ context.earnings }}</h4>
     </main>
 </body>
 
