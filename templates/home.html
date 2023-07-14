@@ -6,8 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Retirement Calculator</title>
     <style>
+        * {
+            font-family: sans-serif;
+        }
+
         body {
-            font-family: 'Times New Roman', Times, serif;
             margin: 0;
             padding: 0;
         }
@@ -51,6 +54,55 @@
             padding: 20px;
             text-align: center;
         }
+
+        .styled-form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f7f7f7;
+            border-radius: 4px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .text-box {
+            background-color: #84c4ec;
+            max-width: 400px;
+            margin: 0 auto;
+            border-radius: 5px;
+            padding: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-family: 'Arial', sans-serif;
+            font-size: 16px;
+            color: #333;
+            line-height: 1.5;
+        }
     </style>
 </head>
 
@@ -61,7 +113,7 @@
 
     <nav>
         <ul>
-            <li><a href="/">Home</a></li>
+            <li><a href="/">Home Hi</a></li>
             <li><a href="/">About</a></li>
             <li><a href="/">Services</a></li>
             <li><a href="/">Contact</a></li>
@@ -71,13 +123,16 @@
     <main>
         <h2>Enter your information here</h2>
         <p>The calculator will tell you your projected retirement savings</p>
-        <form action="/process" method="post" enctype="multipart/form-data">
+        <div class="text-box">
+            <h1 class="text-box">Earnings: ${{ context.earnings }}</h1>
+        </div>
+        <form action="/process" method="post" enctype="multipart/form-data" class="styled-form">
             <label for="income">Annual Income:</label><br>
             <input type="number" id="income" name="income" value="100000"><br>
             <label for="invest">Percentage of Income Invested:</label><br>
             <input type="number" id="invest" name="invest" value="20"><br>
             <label for="current">Current Amount Invested:</label><br>
-            <input type="current" id="current" name="current" value="1000"><br><br>
+            <input type="number" id="current" name="current" value="1000"><br><br>
             <label for="raise">Projected Annual Raise %:</label><br>
             <input type="number" id="raise" name="raise" value="5"><br><br>
             <label for="age">Current Age:</label><br>
@@ -88,7 +143,7 @@
             <input type="number" id="retire" name="retire" value="60"><br><br>
             <input type="submit" value="Submit">
         </form>
-        <h4>Earnings: {{ context.earnings }}</h4>
+
     </main>
 </body>
 

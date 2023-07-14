@@ -1,13 +1,14 @@
 
 from flask import Flask
-from flask import render_template, request
+from flask import render_template, request, url_for, redirect
 
 app = Flask(__name__)
 
 
-@app.route("/")
+@app.route("/", methods=['GET', 'POST'])
 def home():
-    return render_template("home.html")
+    context = {"earnings": 0}
+    return render_template("home.html", context=context)
 
 
 @app.route("/process", methods=['GET', 'POST'])
@@ -36,4 +37,5 @@ def calc():
         value = value * (1 + gains)
         value = value + (income * invest_percent)
         income = income*(1 + raises)
-    return render_template("home.html", context={"earnings": value})
+    context = {"earnings": int(value)}
+    return render_template("home.html", context=context)
