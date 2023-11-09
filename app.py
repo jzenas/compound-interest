@@ -39,3 +39,15 @@ def calc():
         income = income*(1 + raises)
     context = {"earnings": int(value)}
     return render_template("home.html", context=context)
+
+@app.route("/Contact/", methods=['GET', 'POST'])
+def contact():
+    return render_template("contact.html")
+
+@app.route("/About/", methods=['GET', 'POST'])
+def about():
+    return render_template("about.html")
+
+@app.route("/Tools/", methods=['GET', 'POST'])
+def tools():
+    return render_template("tools.html")
